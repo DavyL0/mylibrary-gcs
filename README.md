@@ -39,7 +39,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 * [JDK 26](https://jdk.java.net/)
 * [Node.js](https://nodejs.org/) (versão compatível com Angular 17)
 * [Angular CLI](https://angular.io/cli) v17
-* Sua IDE de preferência (IntelliJ IDEA, VS Code, Eclipse)
+* IntelliJ IDEA
 
 ---
 
