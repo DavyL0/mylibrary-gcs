@@ -1,6 +1,7 @@
 package com.davy.backend.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -10,6 +11,7 @@ public class Categoria {
     private Long id;
 
     @Column(length = 50, nullable = false)
+    @UniqueElements
     private String nome;
 
     @Column(length = 100, nullable = false)
