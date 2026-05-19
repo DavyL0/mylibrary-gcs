@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {Categoria} from '../../categoria/categoria.model';
+import {Categoria} from '../../entity/categoria.model';
 import {CategoriaService} from '../../service/categoria.service';
 
 @Component({
