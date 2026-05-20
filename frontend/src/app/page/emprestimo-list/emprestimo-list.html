@@ -1,0 +1,54 @@
+<div class="container">
+  <app-emprestimo-form (emprestimoRealizado)="carregarEmprestimos()"></app-emprestimo-form>
+
+  <hr />
+
+  <h2>Registro de Empréstimos Ativos e Concluídos</h2>
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID Livro</th>
+      <th>Leitor</th>
+      <th>Telefone</th>
+      <th>Data Empréstimo</th>
+      <th>Devolução Prevista</th>
+      <th>Status / Devolução Efetiva</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (emp of emprestimos; track emp.id) {
+        <tr>
+          <td>{{ emp.livroId || emp.livro?.id }}</td>
+          <td>{{ emp.nomeEmprestimo }}</td>
+          <td>{{ emp.telefone }}</td>
+          <td>{{ emp.dataEmprestimo | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ emp.dataDevolucaoPrevista | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            @if (emp.dataDevolucaoEfetiva) {
+              <span class="badge devolvido">
+                    Devolvido em {{ emp.dataDevolucaoEfetiva | date: 'dd/MM/yyyy' }}
+                  </span>
+            } @else {
+              <span class="badge pendente">Em Andamento</span>
+            }
+          </td>
+          <td>
+            @if (!emp.dataDevolucaoEfetiva) {
+              <button (click)="devolver(emp.id)" class="btn-devolver">
+                Registrar Devolução
+              </button>
+            } @else {
+              <button disabled class="btn-disabled">Encerrado</button>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="7">Nenhum registro de empréstimo encontrado.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
