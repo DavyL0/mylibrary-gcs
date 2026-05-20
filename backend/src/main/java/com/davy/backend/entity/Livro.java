@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_livro")
@@ -26,10 +27,14 @@ public class Livro {
     private Date anoPublicacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id")
     private Categoria categoriaId;
 
     @Column(nullable = false)
     private StatusLivro  status = StatusLivro.DISPONIVEL;
+
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos;
 
     public Livro() {}
 
