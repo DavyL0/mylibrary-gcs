@@ -1,0 +1,16 @@
+<div class="form-container">
+  <h3>Registrar Novo Empréstimo</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <input type="number" formControlName="livroId" placeholder="ID do Livro" />
+
+    <input formControlName="nomeEmprestimo" placeholder="Nome do Leitor" />
+
+    <input formControlName="telefone" placeholder="Telefone de Contato" />
+
+    <label for="dataPrevista">Data de Devolução Prevista:</label>
+    <input id="dataPrevista" type="date" formControlName="dataDevolucaoPrevista" />
+
+    <button type="submit" [disabled]="form.invalid">Confirmar Empréstimo</button>
+  </form>
+</div>
