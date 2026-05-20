@@ -18,7 +18,7 @@ import java.util.List;
 
         public Categoria findById(Long id) {
             return categoriaRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada com o ID: " + id));
+                    .orElseThrow(() -> new IllegalArgumentException("Categoria não encontrada com o ID: " + id));
         }
 
         public List<Categoria> findAll() {
@@ -29,7 +29,7 @@ import java.util.List;
         public Categoria save(Categoria categoria) {
             boolean nomeExiste = categoriaRepository.existsByNome(categoria.getNome());
             if (nomeExiste) {
-                throw new BusinessException("Já existe uma categoria cadastrada com o nome: " + categoria.getNome());
+                throw new IllegalStateException(("Já existe uma categoria cadastrada com o nome: " + categoria.getNome()));
             }
             return categoriaRepository.save(categoria);
         }
@@ -38,7 +38,7 @@ import java.util.List;
         public void deleteById(Long id) {
             Categoria categoria = findById(id);
             if (categoria.getLivros() != null && !categoria.getLivros().isEmpty()) {
-                throw new BusinessException("Não é possível excluir uma categoria que possui livros associados.");
+                throw new IllegalStateException(("Não é possível excluir uma categoria que possui livros associados."));
             }
             categoriaRepository.deleteById(id);
         }
