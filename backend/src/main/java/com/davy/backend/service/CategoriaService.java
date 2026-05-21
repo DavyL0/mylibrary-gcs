@@ -28,7 +28,7 @@ import java.util.List;
         @Transactional
         public Categoria save(Categoria categoria) {
             boolean nomeExiste = categoriaRepository.existsByNome(categoria.getNome());
-            if (nomeExiste) {
+            if (nomeExiste){
                 throw new IllegalStateException(("Já existe uma categoria cadastrada com o nome: " + categoria.getNome()));
             }
             return categoriaRepository.save(categoria);
@@ -37,8 +37,9 @@ import java.util.List;
         @Transactional
         public void deleteById(Long id) {
             Categoria categoria = findById(id);
-            if (categoria.getLivros() != null && !categoria.getLivros().isEmpty()) {
+            if (categoria.getLivros() != null && !categoria.getLivros().isEmpty()){
                 throw new IllegalStateException(("Não é possível excluir uma categoria que possui livros associados."));
+
             }
             categoriaRepository.deleteById(id);
         }
