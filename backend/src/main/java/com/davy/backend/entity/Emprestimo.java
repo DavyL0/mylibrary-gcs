@@ -15,7 +15,7 @@ public class Emprestimo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "livro_id")
-    private Livro livroId;
+    private Livro livro;
 
     @Column(length = 100, nullable = false)
     private String nomeEmprestimo;
@@ -36,9 +36,9 @@ public class Emprestimo {
     public Emprestimo() {
     }
 
-    public Emprestimo(Long id, Livro livroId, String nomeEmprestimo, String telefone, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista, LocalDate dataDevolucaoEfetiva) {
+    public Emprestimo(Long id, Livro livro, String nomeEmprestimo, String telefone, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista, LocalDate dataDevolucaoEfetiva) {
         this.id = id;
-        this.livroId = livroId;
+        this.livro = livro;
         this.nomeEmprestimo = nomeEmprestimo;
         this.telefone = telefone;
         this.dataEmprestimo = dataEmprestimo;
@@ -54,12 +54,12 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public Livro getLivroId() {
-        return livroId;
+    public Livro getlivro() {
+        return livro;
     }
 
-    public void setLivroId(Livro livroId) {
-        this.livroId = livroId;
+    public void setlivro(Livro livro) {
+        this.livro = livro;
     }
 
     public String getNomeEmprestimo() {

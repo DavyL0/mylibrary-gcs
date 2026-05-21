@@ -31,7 +31,7 @@ public class EmprestimoService {
         livroService.save(livroEmprestado);
 
         Emprestimo emprestimo = new Emprestimo();
-        emprestimo.setLivroId(livroEmprestado);
+        emprestimo.setlivro(livroEmprestado);
         emprestimo.setNomeEmprestimo(nome);
         emprestimo.setTelefone(telefone);
         emprestimo.setDataEmprestimo(LocalDate.now());
@@ -48,7 +48,7 @@ public class EmprestimoService {
             throw new IllegalStateException("Esse empréstimo já foi encerrado.");
         }
 
-        Livro livro = emprestimo.getLivroId();
+        Livro livro = emprestimo.getlivro();
         livro.setStatus(StatusLivro.DISPONIVEL);
         livroService.save(livro);
 
