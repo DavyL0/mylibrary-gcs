@@ -1,48 +1,31 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, RouterModule} from '@angular/router';
-import {FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {CategoriaService} from '../../service/categoria.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CategoriaService } from '../../service/categoria.service';
 
 @Component({
   selector: 'app-categoria-form',
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './categoria-form.html',
-  styleUrl: './categoria-form.css',
+  templateUrl: 'categoria-form.html',
+  styleUrl: 'categoria-form.css',
 })
 export class CategoriaForm implements OnInit {
-    categoriaForm!: FormGroup;
-    mensagemSucesso: string = '';
-    erroServidor: string = '';
-
+  categoriaForm!: FormGroup;
+  mensagemSucesso: string = '';
+  erroServidor: string = '';
 
   constructor(
     private fb: FormBuilder,
     private categoriaService: CategoriaService,
-    private router: Router,
-    ) {}
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.categoriaForm = this.fb.group({
       nome: ['', Validators.required],
       descricao: ['', Validators.required],
-    })
-
-    this.adicionarCategoria();
-  }
-
-  get categorias(): FormArray {
-    return this.categoriaForm.get('nome') as FormArray;
-  }
-
-  adicionarCategoria() {
-    this.categorias.push(this.fb.control('', Validators.required));
-  }
-
-  removerCategoria(index: number) {
-    if(this.categorias.length > 0){
-      this.categorias.removeAt(index);
-    }
+    });
   }
 
   submeter(): void {

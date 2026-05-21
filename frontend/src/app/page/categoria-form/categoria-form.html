@@ -5,7 +5,7 @@
     <div *ngIf="mensagemSucesso" class="alert alert-success text-center">{{ mensagemSucesso }}</div>
     <div *ngIf="erroServidor" class="alert alert-danger text-center">{{ erroServidor }}</div>
 
-    <form [formGroup]="" (ngSubmit)="submeter()">
+    <form [formGroup]="categoriaForm" (ngSubmit)="submeter()">
 
       <div class="mb-3">
         <label class="form-label font-weight-bold">Nome da Categoria</label>
@@ -17,7 +17,7 @@
       <div class="mb-4">
         <label class="form-label">Descrição</label>
         <textarea formControlName="descricao" rows="4" class="form-control" placeholder="Descreva aqui..." [ngClass]="{'is-invalid': categoriaForm.get('descricao')?.touched && categoriaForm.get('descricao')?.invalid}"></textarea>
-        <div class="invalid-feedback">A descrição é obrigatória.</div>
+        <div class="invalid-feedback" *ngIf="categoriaForm.get('descricao')?.hasError('required')">A descrição é obrigatória.</div>
       </div>
 
       <div class="d-flex justify-content-end gap-2">
