@@ -1,1 +1,130 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+// Backgrounds
+  --color-background-primary:   #FFFFFF;
+  --color-background-secondary: #F1EFE8;
+  --color-background-tertiary:  #E8E6DF;
+  --color-background-info:      #E6F1FB;
+  --color-background-success:   #EAF3DE;
+  --color-background-warning:   #FAEEDA;
+  --color-background-danger:    #FCEBEB;
+
+// Text
+  --color-text-primary:   #2C2C2A;
+  --color-text-secondary: #5F5E5A;
+  --color-text-tertiary:  #888780;
+  --color-text-info:      #0C447C;
+  --color-text-success:   #27500A;
+  --color-text-warning:   #633806;
+  --color-text-danger:    #791F1F;
+
+// Borders
+  --color-border-tertiary:  rgba(44, 44, 42, 0.15);
+  --color-border-secondary: rgba(44, 44, 42, 0.30);
+  --color-border-primary:   rgba(44, 44, 42, 0.40);
+  --color-border-info:      rgba(12, 68, 124, 0.40);
+  --color-border-success:   rgba(39, 80, 10, 0.40);
+  --color-border-warning:   rgba(99, 56, 6, 0.40);
+  --color-border-danger:    rgba(121, 31, 31, 0.40);
+
+// Status — disponível / emprestado
+--color-disponivel-bg:   #E1F5EE;
+  --color-disponivel-text: #085041;
+  --color-emprestado-bg:   #FAECE7;
+  --color-emprestado-text: #993C1D;
+  --color-vencido-bg:      #FCEBEB;
+  --color-vencido-text:    #791F1F;
+
+// Layout
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  // Backgrounds
+  --color-background-primary:   #1C1C1A;
+  --color-background-secondary: #2C2C2A;
+  --color-background-tertiary:  #3A3A37;
+  --color-background-info:      #042C53;
+  --color-background-success:   #173404;
+  --color-background-warning:   #412402;
+  --color-background-danger:    #501313;
+
+  // Text
+  --color-text-primary:   #F1EFE8;
+  --color-text-secondary: #B4B2A9;
+  --color-text-tertiary:  #888780;
+  --color-text-info:      #B5D4F4;
+  --color-text-success:   #C0DD97;
+  --color-text-warning:   #FAC775;
+  --color-text-danger:    #F7C1C1;
+
+  --color-border-tertiary:  rgba(241, 239, 232, 0.15);
+  --color-border-secondary: rgba(241, 239, 232, 0.30);
+  --color-border-primary:   rgba(241, 239, 232, 0.40);
+  --color-border-info:      rgba(181, 212, 244, 0.40);
+  --color-border-success:   rgba(192, 221, 151, 0.40);
+  --color-border-warning:   rgba(250, 199, 117, 0.40);
+  --color-border-danger:    rgba(247, 193, 193, 0.40);
+
+  --color-disponivel-bg:   #085041;
+  --color-disponivel-text: #9FE1CB;
+  --color-emprestado-bg:   #712B13;
+  --color-emprestado-text: #F5C4B3;
+  --color-vencido-bg:      #791F1F;
+  --color-vencido-text:    #F7C1C1;
+  }
+}
+
+   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  background: var(--color-background-tertiary);
+  color: var(--color-text-primary);
+}
+
+
+   .badge {
+     display: inline-block;
+     font-size: 11px;
+     padding: 3px 8px;
+     border-radius: var(--border-radius-md);
+
+     &.disponivel {
+       background: var(--color-disponivel-bg);
+       color: var(--color-disponivel-text);
+     }
+     &.emprestado {
+       background: var(--color-emprestado-bg);
+       color: var(--color-emprestado-text);
+     }
+     &.vencido {
+       background: var(--color-vencido-bg);
+       color: var(--color-vencido-text);
+     }
+     &.info    { background: var(--color-background-info);    color: var(--color-text-info);    }
+     &.success { background: var(--color-background-success); color: var(--color-text-success); }
+     &.warning { background: var(--color-background-warning); color: var(--color-text-warning); }
+     &.danger  { background: var(--color-background-danger);  color: var(--color-text-danger);  }
+   }
+
+   .card {
+     background: var(--color-background-primary);
+     border: 0.5px solid var(--color-border-tertiary);
+     border-radius: var(--border-radius-lg);
+     padding: 1.25rem;
+   }
+
+.metric-card {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 1rem;
+
+  .metric-label { font-size: 12px; color: var(--color-text-secondary); }
+  .metric-value { font-size: 26px; font-weight: 500; color: var(--color-text-); }
+}
