@@ -1,0 +1,76 @@
+<div class="list-container">
+  <h2>Catálogo de Livros</h2>
+
+  <div class="filtros-bar">
+    <input type="text" [(ngModel)]="buscaTermo" (input)="aplicarFiltros()" placeholder="Buscar por título ou autor..." />
+
+    <select [(ngModel)]="categoriaSelecionada" (change)="aplicarFiltros()">
+      <option value="">Todas as Categorias</option>
+      <option value="Ficção">Ficção</option>
+      <option value="Tecnologia">Tecnologia</option>
+    </select>
+
+    <select [(ngModel)]="statusSelecionado" (change)="aplicarFiltros()">
+      <option value="">Todos os Status</option>
+      <option value="DISPONIVEL">Disponível</option>
+      <option value="EMPRESTADO">Emprestado</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Categoria</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (livro of livros; track livro.id) {
+        <tr>
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.autor }}</td>
+          <td>{{ livro.categoria }}</td>
+          <td>
+            <span [class]="'badge ' + livro.status">{{ livro.status }}</span>
+          </td>
+          <td>
+            <button (click)="verHistorico(livro)">Histórico</button>
+
+            <button
+              [disabled]="livro.status !== 'DISPONIVEL'"
+              (click)="excluirLivro(livro)"
+              class="btn-danger">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5">Nenhum livro encontrado.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  @if (livroSelecionado && historico.length > 0) {
+    <div class="historico-panel">
+      <h3>Histórico de Empréstimos: {{ livroSelecionado.titulo }}</h3>
+      <ul>
+        @for (item of historico; track item.id) {
+          <li>
+            Leitor: {{ item.leitor }} | Empréstimo: {{ item.dataEmprestimo }}
+            @if (item.dataDevolucao) {
+              | Devolução: {{ item.dataDevolucao }}
+            } @else {
+              | <strong class="text-warn">Ainda Emprestado</strong>
+            }
+          </li>
+        }
+      </ul>
+      <button (click)="livroSelecionado = null">Fechar Histórico</button>
+    </div>
+  }
+</div>
