@@ -3,6 +3,8 @@ package com.davy.backend.entity;
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {

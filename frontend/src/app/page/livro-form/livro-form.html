@@ -1,0 +1,12 @@
+<div class="form-container">
+  <h2>Cadastrar Livro</h2>
+  <form [formGroup]="livroForm" (ngSubmit)="onSubmit()">
+    <input formControlName="titulo" placeholder="Título" />
+    <input formControlName="autor" placeholder="Autor" />
+    <input formControlName="isbn" placeholder="ISBN" />
+    <input type="number" formControlName="ano" placeholder="Ano" />
+    <input formControlName="categoria" placeholder="Categoria" />
+
+    <button type="submit" [disabled]="livroForm.invalid">Salvar Livro</button>
+  </form>
+</div>
