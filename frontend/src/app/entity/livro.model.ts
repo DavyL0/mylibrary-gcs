@@ -5,5 +5,10 @@ export interface Livro {
   isbn: string;
   ano: number;
   categoria: string;
-  status: 'DISPONIVEL' | 'EMPRESTADO'; // CA02.1 & CA02.2
+  status: 'DISPONIVEL' | 'EMPRESTADO';
+}
+
+export enum StatusLivro {
+  DISPONIVEL = 'DISPONIVEL',
+  EMPRESTADO = 'EMPRESTADO'
 }
