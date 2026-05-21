@@ -8,7 +8,7 @@ import { HistoricoEmprestimo } from '../entity/historico-emprestimo.model'
   providedIn: 'root'
 })
 export class LivroService {
-  private readonly API = '/api/livros';
+  private readonly API = 'http://localhost:8080/api/livros';
 
   constructor(private http: HttpClient) {}
 

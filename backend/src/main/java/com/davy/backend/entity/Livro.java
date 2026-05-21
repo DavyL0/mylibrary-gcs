@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_livro")
@@ -30,6 +31,9 @@ public class Livro {
 
     @Column(nullable = false)
     private StatusLivro  status = StatusLivro.DISPONIVEL;
+
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos;
 
     public Livro() {}
 
