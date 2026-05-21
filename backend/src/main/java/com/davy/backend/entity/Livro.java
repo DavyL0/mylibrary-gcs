@@ -13,7 +13,7 @@ public class Livro {
     private Long id;
 
     @Column(length = 100, nullable = false)
-    private String title;
+    private String titulo;
 
     @Column(length = 100, nullable = false)
     private String autor;
@@ -26,20 +26,20 @@ public class Livro {
     private Date anoPublicacao;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Categoria categoriaId;
+    private Categoria categoria;
 
     @Column(nullable = false)
     private StatusLivro  status = StatusLivro.DISPONIVEL;
 
     public Livro() {}
 
-    public Livro(Long id, String title, String autor, String ISBN, Date anoPublicacao, Categoria categoriaId, StatusLivro status) {
+    public Livro(Long id, String titulo, String autor, String ISBN, Date anoPublicacao, Categoria categoria, StatusLivro status) {
         this.id = id;
-        this.title = title;
+        this.titulo = titulo;
         this.autor = autor;
         this.ISBN = ISBN;
         this.anoPublicacao = anoPublicacao;
-        this.categoriaId = categoriaId;
+        this.categoria = categoria;
         this.status = status;
     }
 
@@ -51,12 +51,12 @@ public class Livro {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String gettitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void settitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getAutor() {
@@ -83,12 +83,12 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
-    public Categoria getCategoriaId() {
-        return categoriaId;
+    public Categoria getcategoria() {
+        return categoria;
     }
 
-    public void setCategoriaId(Categoria categoriaId) {
-        this.categoriaId = categoriaId;
+    public void setcategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public StatusLivro getStatus() {
