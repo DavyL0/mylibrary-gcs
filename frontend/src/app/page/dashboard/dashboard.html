@@ -1,0 +1,44 @@
+<div class="dashboard" *ngIf="!carregando; else loading">
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <span class="metric-label">Total de livros</span>
+      <span class="metric-value">{{ totalLivros }}</span>
+    </div>
+    <div class="metric-card disponivel">
+      <span class="metric-label">Disponíveis</span>
+      <span class="metric-value">{{ totalDisponiveis }}</span>
+    </div>
+    <div class="metric-card emprestado">
+      <span class="metric-label">Emprestados</span>
+      <span class="metric-value">{{ totalEmprestados }}</span>
+    </div>
+    <div class="metric-card ativo">
+      <span class="metric-label">Empréstimos ativos</span>
+      <span class="metric-value">{{ totalEmprestimosAtivos }}</span>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h2 class="section-title">Últimos 5 empréstimos</h2>
+
+    <p class="empty" *ngIf="ultimosEmprestimos.length === 0">Nenhum empréstimo registrado.</p>
+
+    <div class="emprestimo-row" *ngFor="let emp of ultimosEmprestimos">
+      <div class="emp-info">
+        <span class="emp-titulo">{{ emp.livro.titulo }}</span>
+        <span class="emp-meta">
+          {{ emp.nomeEmprestimo }} · devolução prevista {{ emp.dataDevolucaoPrevista | date:'dd/MM' }}
+        </span>
+      </div>
+      <span class="badge" [class.ativo]="!isVencido(emp)" [class.vencido]="isVencido(emp)">
+        {{ isVencido(emp) ? 'vencido' : 'ativo' }}
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p class="loading-text">Carregando dashboard...</p>
+</ng-template>
