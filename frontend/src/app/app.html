@@ -1,1 +1,64 @@
-<app-livro-list></app-livro-list>
+<div class="app-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <i class="ti ti-books" aria-hidden="true"></i>
+      <span>Acervo</span>
+    </div>
+
+    <nav>
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'dashboard'"
+        (click)="navegarPara('dashboard')">
+        <i class="ti ti-layout-dashboard" aria-hidden="true"></i>
+        <span>Dashboard</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'categoria'"
+        (click)="navegarPara('categoria')">
+        <i class="ti ti-layout-categoria" aria-hidden="true"></i>
+        <span>Categoria</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'livros'"
+        (click)="navegarPara('livros')">
+        <i class="ti ti-book" aria-hidden="true"></i>
+        <span>Livros</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'atrasados'"
+        (click)="navegarPara('atrasados')">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+        <span>Atrasados</span>
+      </button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <h1 class="page-title">
+        <ng-container [ngSwitch]="paginaAtiva">
+          <span *ngSwitchCase="'dashboard'">Dashboard</span>
+          <span *ngSwitchCase="'categoria'">Categoria</span>
+          <span *ngSwitchCase="'livros'">Livros</span>
+          <span *ngSwitchCase="'atrasados'">Empréstimos em atraso</span>
+        </ng-container>
+      </h1>
+    </header>
+
+    <div class="page-body">
+      <app-dashboard              *ngIf="paginaAtiva === 'dashboard'" />
+      <app-categoria-form         *ngIf="paginaAtiva === 'categoria'"/>
+      <app-livro-filter           *ngIf="paginaAtiva === 'livros'"    />
+      <app-emprestimos-atrasados  *ngIf="paginaAtiva === 'atrasados'" />
+    </div>
+  </main>
+
+</div>

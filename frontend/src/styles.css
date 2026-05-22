@@ -1,5 +1,4 @@
 :root {
-// Backgrounds
   --color-background-primary:   #FFFFFF;
   --color-background-secondary: #F1EFE8;
   --color-background-tertiary:  #E8E6DF;
@@ -8,7 +7,6 @@
   --color-background-warning:   #FAEEDA;
   --color-background-danger:    #FCEBEB;
 
-// Text
   --color-text-primary:   #2C2C2A;
   --color-text-secondary: #5F5E5A;
   --color-text-tertiary:  #888780;
@@ -17,7 +15,6 @@
   --color-text-warning:   #633806;
   --color-text-danger:    #791F1F;
 
-// Borders
   --color-border-tertiary:  rgba(44, 44, 42, 0.15);
   --color-border-secondary: rgba(44, 44, 42, 0.30);
   --color-border-primary:   rgba(44, 44, 42, 0.40);
@@ -25,16 +22,13 @@
   --color-border-success:   rgba(39, 80, 10, 0.40);
   --color-border-warning:   rgba(99, 56, 6, 0.40);
   --color-border-danger:    rgba(121, 31, 31, 0.40);
-
-// Status — disponível / emprestado
---color-disponivel-bg:   #E1F5EE;
+  --color-disponivel-bg:   #E1F5EE;
   --color-disponivel-text: #085041;
   --color-emprestado-bg:   #FAECE7;
   --color-emprestado-text: #993C1D;
   --color-vencido-bg:      #FCEBEB;
   --color-vencido-text:    #791F1F;
 
-// Layout
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
   --border-radius-xl: 16px;
@@ -42,7 +36,6 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-  // Backgrounds
   --color-background-primary:   #1C1C1A;
   --color-background-secondary: #2C2C2A;
   --color-background-tertiary:  #3A3A37;
@@ -51,7 +44,6 @@
   --color-background-warning:   #412402;
   --color-background-danger:    #501313;
 
-  // Text
   --color-text-primary:   #F1EFE8;
   --color-text-secondary: #B4B2A9;
   --color-text-tertiary:  #888780;

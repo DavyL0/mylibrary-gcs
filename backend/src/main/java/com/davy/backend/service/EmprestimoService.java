@@ -64,4 +64,9 @@ public class EmprestimoService {
         return emprestimoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Empréstimo não encontrado: id " + id));
     }
+    
+    public List<Emprestimo> findAtrasados() {
+        return emprestimoRepository.findAtrasados(LocalDate.now());
+    }
+
 }
