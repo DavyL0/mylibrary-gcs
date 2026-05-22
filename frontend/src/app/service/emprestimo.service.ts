@@ -26,4 +26,8 @@ export class EmprestimoService {
   devolverLivro(id: number): Observable<Emprestimo> {
     return this.http.patch<Emprestimo>(`${this.API}/${id}/devolver`, {});
   }
+
+  findAtrasados(): Observable<Emprestimo[]> {
+    return this.http.get<Emprestimo[]>(`${this.API}/atrasados`);
+  }
 }

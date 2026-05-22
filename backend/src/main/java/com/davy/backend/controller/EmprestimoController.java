@@ -50,4 +50,9 @@ public class EmprestimoController {
             String telefone,
             LocalDate dataDevolucaoPrevista
     ) {}
+
+    @GetMapping("/atrasados")
+    public ResponseEntity<List<Emprestimo>> findAtrasados() {
+        return ResponseEntity.ok(service.findAtrasados());
+    }
 }
