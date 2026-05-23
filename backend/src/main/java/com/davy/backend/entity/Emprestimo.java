@@ -1,5 +1,8 @@
 package com.davy.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -13,6 +16,7 @@ public class Emprestimo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "livro_id")
     private Livro livro;
@@ -30,13 +34,20 @@ public class Emprestimo {
     @Column(nullable = false)
     private LocalDate dataDevolucaoPrevista;
 
-    @Column(nullable = false)
     private LocalDate dataDevolucaoEfetiva;
 
     public Emprestimo() {
     }
 
-    public Emprestimo(Long id, Livro livro, String nomeEmprestimo, String telefone, LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista, LocalDate dataDevolucaoEfetiva) {
+    @JsonCreator
+    public Emprestimo(
+            @JsonProperty("id") Long id,
+            @JsonProperty("livro") Livro livro,
+            @JsonProperty("nomeEmprestimo") String nomeEmprestimo,
+            @JsonProperty("telefone") String telefone,
+            @JsonProperty("dataEmprestimo") LocalDate dataEmprestimo,
+            @JsonProperty("dataDevolucaoPrevista") LocalDate dataDevolucaoPrevista,
+            @JsonProperty("dataDevolucaoEfetiva") LocalDate dataDevolucaoEfetiva) {
         this.id = id;
         this.livro = livro;
         this.nomeEmprestimo = nomeEmprestimo;
@@ -54,11 +65,11 @@ public class Emprestimo {
         this.id = id;
     }
 
-    public Livro getlivro() {
+    public Livro getLivro() {
         return livro;
     }
 
-    public void setlivro(Livro livro) {
+    public void setLivro(Livro livro) {
         this.livro = livro;
     }
 

@@ -2,6 +2,7 @@ package com.davy.backend.controller;
 
 import com.davy.backend.entity.Livro;
 import com.davy.backend.service.LivroService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/livros")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LivroController {
-    private final LivroService service;
 
-    public LivroController(LivroService service) {
-        this.service = service;
-    }
+    @Autowired
+    private LivroService service;
 
     @GetMapping
     public ResponseEntity<List<Livro>> findAll() {

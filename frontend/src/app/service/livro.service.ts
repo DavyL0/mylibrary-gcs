@@ -33,6 +33,10 @@ export class LivroService {
     return this.http.delete<void>(`${this.API}/${id}`);
   }
 
+  findById(id: number): Observable<Livro> {
+    return this.http.get<Livro>(`${this.API}/${id}`);
+  }
+
   getHistorico(id: number): Observable<HistoricoEmprestimo[]> {
     return this.http.get<HistoricoEmprestimo[]>(`${this.API}/${id}/historico`);
   }

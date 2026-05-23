@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {Livro} from '../../entity/livro.model';
+import {Livro, StatusLivro} from '../../entity/livro.model';
 import {HistoricoEmprestimo} from '../../entity/historico-emprestimo.model';
 import {LivroService} from '../../service/livro.service';
+import {CategoriaService} from '../../service/categoria.service';
 
 @Component({
   selector: 'app-livro-list',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './livro-list.html',
   styleUrl: './livro-list.css',
@@ -15,20 +17,32 @@ export class LivroList implements OnInit {
   livros: Livro[] = [];
   historico: HistoricoEmprestimo[] = [];
   livroSelecionado: Livro | null = null;
+  categorias: string[] = [];
+  StatusLivro = StatusLivro;
 
-  // Variáveis de Filtro
   buscaTermo: string = '';
   categoriaSelecionada: string = '';
   statusSelecionado: string = '';
 
-  constructor(private service: LivroService) {}
+  constructor(
+    private service: LivroService,
+    private categoriaService: CategoriaService
+  ) {}
 
   ngOnInit(): void {
     this.carregarLivros();
   }
 
   carregarLivros(): void {
-    this.service.findAll().subscribe(dados => this.livros = dados);
+    console.log('Carregando livros...');
+    this.service.findAll().subscribe({
+      next: (dados) => {
+        console.log('Livros carregados:', dados);
+        this.livros = dados;
+        this.categorias = [...new Set(dados.map(l => l.categoria?.nome).filter((nome): nome is string => !!nome))];
+      },
+      error: (err) => console.error('Erro ao carregar livros', err)
+    });
   }
 
   aplicarFiltros(): void {

@@ -39,29 +39,31 @@ nav {
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
-  padding: 9px 12px;
+  padding: 10px 16px;
   border: none;
   border-radius: var(--border-radius-md);
   background: transparent;
   color: var(--color-text-secondary);
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   text-align: left;
-  transition: background 0.15s, color 0.15s;
+  transition: all 0.2s;
 
-  i { font-size: 18px; }
+  i { font-size: 20px; color: var(--color-text-tertiary); transition: color 0.2s; }
 
   &:hover {
     background: var(--color-background-secondary);
     color: var(--color-text-primary);
+    i { color: var(--color-text-primary); }
   }
 
   &.active {
-    background: var(--color-background-secondary);
-    color: var(--color-text-primary);
-    font-weight: 500;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    i { color: var(--color-text-info); }
   }
 }
 

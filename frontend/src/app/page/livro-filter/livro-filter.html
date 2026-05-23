@@ -40,14 +40,23 @@
 
 <div class="livros-grid" *ngIf="livrosFiltrados.length > 0; else semResultados">
   <div class="livro-card" *ngFor="let livro of livrosFiltrados">
-    <h3>{{ livro.titulo }}</h3>
-    <p class="autor">{{ livro.autor }}</p>
-    <p class="categoria">{{ livro.categoria }}</p>
-    <span class="badge"
-          [class.disponivel]="livro.status === StatusLivro.DISPONIVEL"
-          [class.emprestado]="livro.status === StatusLivro.EMPRESTADO">
-      {{ livro.status === StatusLivro.DISPONIVEL ? 'Disponível' : 'Emprestado' }}
-    </span>
+    <div class="livro-header">
+      <h3>{{ livro.titulo }}</h3>
+      <span class="badge"
+            [class.disponivel]="livro.status === StatusLivro.DISPONIVEL"
+            [class.emprestado]="livro.status === StatusLivro.EMPRESTADO">
+        {{ livro.status === StatusLivro.DISPONIVEL ? 'Disponível' : 'Emprestado' }}
+      </span>
+    </div>
+    <p class="autor"><i class="ti ti-user-edit"></i> {{ livro.autor }}</p>
+    <div class="livro-footer">
+      <span class="categoria-tag">
+        <i class="ti ti-tag"></i> {{ livro.categoria?.nome || 'Sem categoria' }}
+      </span>
+      <span class="ano" *ngIf="livro.anoPublicacao">
+        <i class="ti ti-calendar-event"></i> {{ livro.anoPublicacao }}
+      </span>
+    </div>
   </div>
 </div>
 

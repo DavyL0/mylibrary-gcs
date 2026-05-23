@@ -5,10 +5,13 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { LivroService } from '../../service/livro.service';
 import { Livro, StatusLivro } from '../../entity/livro.model';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-livro-filter',
+  standalone: true,
   templateUrl: './livro-filter.html',
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   styleUrl: './livro-filter.css'
 })
 export class LivroFilter implements OnInit, OnDestroy {
@@ -33,7 +36,7 @@ export class LivroFilter implements OnInit, OnDestroy {
     this.livroService.findAll().subscribe(livros => {
       this.livros = livros;
       this.livrosFiltrados = livros;
-      this.categorias = [...new Set(livros.map(l => l.categoria).filter(Boolean))];
+      this.categorias = [...new Set(livros.map(l => l.categoria?.nome).filter((nome): nome is string => !!nome))];
     });
 
     this.filterForm.valueChanges.pipe(
@@ -48,7 +51,7 @@ export class LivroFilter implements OnInit, OnDestroy {
     const q = busca?.toLowerCase().trim() ?? '';
 
     this.livrosFiltrados = this.livros.filter(livro => {
-      const matchCategoria = !categoria || livro.categoria === categoria;
+      const matchCategoria = !categoria || livro.categoria?.nome === categoria;
       const matchStatus    = !status    || livro.status === status;
       const matchBusca     = !q
         || livro.titulo.toLowerCase().includes(q)

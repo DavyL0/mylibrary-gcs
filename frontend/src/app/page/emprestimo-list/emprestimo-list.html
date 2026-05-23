@@ -1,54 +1,72 @@
-<div class="container">
-  <app-emprestimo-form (emprestimoRealizado)="carregarEmprestimos()"></app-emprestimo-form>
+<div class="emprestimo-container">
+  <div class="header-section d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="section-title mb-1">Gestão de Empréstimos</h2>
+      <p class="section-subtitle">Acompanhe e registre a circulação de livros da biblioteca</p>
+    </div>
+    <button class="btn btn-primary" (click)="toggleForm()">
+      <i class="ti" [ngClass]="exibirForm ? 'ti-x' : 'ti-plus'"></i>
+      {{ exibirForm ? 'Cancelar' : 'Novo Empréstimo' }}
+    </button>
+  </div>
 
-  <hr />
+  <div *ngIf="exibirForm" class="mb-4">
+    <app-emprestimo-form
+      (emprestimoRealizado)="carregarEmprestimos(); exibirForm = false"
+      (cancelado)="exibirForm = false">
+    </app-emprestimo-form>
+  </div>
 
-  <h2>Registro de Empréstimos Ativos e Concluídos</h2>
+  <div class="emprestimos-grid" *ngIf="emprestimos && emprestimos.length > 0; else emptyState">
+    <div class="emprestimo-card" *ngFor="let emp of emprestimos" [ngClass]="{'concluido': emp.dataDevolucaoEfetiva}">
+      <div class="card-status">
+        <span class="livro-badge">{{ emp.livro?.titulo || 'Livro Desconhecido' }}</span>
+        <span class="badge" [ngClass]="emp.dataDevolucaoEfetiva ? 'success' : 'warning'">
+          {{ emp.dataDevolucaoEfetiva ? 'Devolvido' : 'Em Aberto' }}
+        </span>
+      </div>
 
-  <table>
-    <thead>
-    <tr>
-      <th>ID Livro</th>
-      <th>Leitor</th>
-      <th>Telefone</th>
-      <th>Data Empréstimo</th>
-      <th>Devolução Prevista</th>
-      <th>Status / Devolução Efetiva</th>
-      <th>Ações</th>
-    </tr>
-    </thead>
-    <tbody>
-      @for (emp of emprestimos; track emp.id) {
-        <tr>
-          <td>{{ emp.livroId || emp.livro?.id }}</td>
-          <td>{{ emp.nomeEmprestimo }}</td>
-          <td>{{ emp.telefone }}</td>
-          <td>{{ emp.dataEmprestimo | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ emp.dataDevolucaoPrevista | date: 'dd/MM/yyyy' }}</td>
-          <td>
-            @if (emp.dataDevolucaoEfetiva) {
-              <span class="badge devolvido">
-                    Devolvido em {{ emp.dataDevolucaoEfetiva | date: 'dd/MM/yyyy' }}
-                  </span>
-            } @else {
-              <span class="badge pendente">Em Andamento</span>
-            }
-          </td>
-          <td>
-            @if (!emp.dataDevolucaoEfetiva) {
-              <button (click)="devolver(emp.id)" class="btn-devolver">
-                Registrar Devolução
-              </button>
-            } @else {
-              <button disabled class="btn-disabled">Encerrado</button>
-            }
-          </td>
-        </tr>
-      } @empty {
-        <tr>
-          <td colspan="7">Nenhum registro de empréstimo encontrado.</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+      <div class="card-body">
+        <div class="livro-info mb-3">
+          <h3 class="livro-titulo">{{ emp.nomeEmprestimo }}</h3>
+          <span class="livro-autor"><i class="ti ti-hash"></i> Empréstimo #{{ emp.id }}</span>
+        </div>
+
+        <div class="detalhes-grid">
+          <div class="detalhe-item">
+            <span class="label">Empréstimo</span>
+            <span class="valor">{{ emp.dataEmprestimo | date: 'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="detalhe-item">
+            <span class="label">Previsão</span>
+            <span class="valor">{{ emp.dataDevolucaoPrevista | date: 'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="detalhe-item" *ngIf="emp.dataDevolucaoEfetiva">
+            <span class="label">Devolução</span>
+            <span class="valor success-text">{{ emp.dataDevolucaoEfetiva | date: 'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="detalhe-item">
+            <span class="label">Contato</span>
+            <span class="valor">{{ emp.telefone }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer" *ngIf="!emp.dataDevolucaoEfetiva">
+        <button (click)="devolver(emp.id)" class="btn-acao btn-block">
+          <i class="ti ti-arrow-back-up"></i> Registrar Devolução
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state text-center py-5">
+      <div class="empty-icon mb-3">
+        <i class="ti ti-book-off" style="font-size: 3rem; color: var(--color-text-tertiary);"></i>
+      </div>
+      <h3>Nenhum empréstimo registrado</h3>
+      <p>Comece registrando um novo empréstimo para os livros da sua biblioteca.</p>
+    </div>
+  </ng-template>
 </div>
