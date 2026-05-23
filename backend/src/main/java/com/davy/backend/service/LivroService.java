@@ -44,7 +44,6 @@ public class LivroService {
     public void delete(Long id) {
         Livro livro = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Esse livro não existe."));
-
         if (livro.getStatus() == StatusLivro.EMPRESTADO) {
             throw new IllegalStateException("Não é possível excluir um livro emprestado.");
         }
