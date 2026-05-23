@@ -9,17 +9,30 @@
 .metric-card {
   background: var(--color-background-secondary);
   border-radius: var(--border-radius-md);
-  padding: 1rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid var(--color-border-tertiary);
+  transition: transform 0.2s;
 
-  .metric-label { font-size: 12px; color: var(--color-text-secondary); }
-  .metric-value { font-size: 26px; font-weight: 500; color: var(--color-text-primary); }
+  &:hover { transform: translateY(-2px); }
 
-  &.disponivel .metric-value { color: #0F6E56; }
-  &.emprestado .metric-value { color: #993C1D; }
-  &.ativo      .metric-value { color: #185FA5; }
+  .metric-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.02em; }
+  .metric-value { font-size: 28px; font-weight: 600; color: var(--color-text-primary); }
+
+  &.disponivel {
+    border-color: var(--color-border-success);
+    .metric-value { color: var(--color-text-success); }
+  }
+  &.emprestado {
+    border-color: var(--color-border-danger);
+    .metric-value { color: var(--color-text-danger); }
+  }
+  &.ativo {
+    border-color: var(--color-border-info);
+    .metric-value { color: var(--color-text-info); }
+  }
 }
 
 .section-card {
@@ -47,8 +60,8 @@
   font-size: 11px;
   padding: 3px 8px;
   border-radius: var(--border-radius-md);
-  &.ativo   { background: #E1F5EE; color: #085041; }
-  &.vencido { background: #FCEBEB; color: #791F1F; }
+  &.ativo   { background: var(--color-background-success); color: var(--color-text-success); }
+  &.vencido { background: var(--color-background-danger); color: var(--color-text-danger); }
 }
 
 .loading-text { color: var(--color-text-secondary); font-size: 14px; }

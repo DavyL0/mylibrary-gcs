@@ -17,10 +17,18 @@
 
       <button
         class="nav-item"
-        [class.active]="paginaAtiva === 'categoria'"
-        (click)="navegarPara('categoria')">
-        <i class="ti ti-layout-categoria" aria-hidden="true"></i>
-        <span>Categoria</span>
+        [class.active]="paginaAtiva === 'categoria-list'"
+        (click)="navegarPara('categoria-list')">
+        <i class="ti ti-category" aria-hidden="true"></i>
+        <span>Categorias</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'categoria-form'"
+        (click)="navegarPara('categoria-form')">
+        <i class="ti ti-layout-grid-add" aria-hidden="true"></i>
+        <span>Nova Categoria</span>
       </button>
 
       <button
@@ -33,10 +41,26 @@
 
       <button
         class="nav-item"
+        [class.active]="paginaAtiva === 'livro-form'"
+        (click)="navegarPara('livro-form')">
+        <i class="ti ti-square-plus" aria-hidden="true"></i>
+        <span>Novo Livro</span>
+      </button>
+
+      <button
+        class="nav-item"
         [class.active]="paginaAtiva === 'atrasados'"
         (click)="navegarPara('atrasados')">
         <i class="ti ti-alert-triangle" aria-hidden="true"></i>
         <span>Atrasados</span>
+      </button>
+
+      <button
+        class="nav-item"
+        [class.active]="paginaAtiva === 'emprestimos'"
+        (click)="navegarPara('emprestimos')">
+        <i class="ti ti-exchange" aria-hidden="true"></i>
+        <span>Empréstimos</span>
       </button>
     </nav>
   </aside>
@@ -46,18 +70,24 @@
       <h1 class="page-title">
         <ng-container [ngSwitch]="paginaAtiva">
           <span *ngSwitchCase="'dashboard'">Dashboard</span>
-          <span *ngSwitchCase="'categoria'">Categoria</span>
+          <span *ngSwitchCase="'categoria-list'">Lista de Categorias</span>
+          <span *ngSwitchCase="'categoria-form'">Nova Categoria</span>
           <span *ngSwitchCase="'livros'">Livros</span>
+          <span *ngSwitchCase="'livro-form'">Novo Livro</span>
           <span *ngSwitchCase="'atrasados'">Empréstimos em atraso</span>
+          <span *ngSwitchCase="'emprestimos'">Gestão de Empréstimos</span>
         </ng-container>
       </h1>
     </header>
 
     <div class="page-body">
       <app-dashboard              *ngIf="paginaAtiva === 'dashboard'" />
-      <app-categoria-form         *ngIf="paginaAtiva === 'categoria'"/>
-      <app-livro-filter           *ngIf="paginaAtiva === 'livros'"    />
+      <app-categoria-list         *ngIf="paginaAtiva === 'categoria-list'" (cancelado)="navegarPara('dashboard')"/>
+      <app-categoria-form         *ngIf="paginaAtiva === 'categoria-form'" (cancelado)="navegarPara('categoria-list')"/>
+      <app-livro-list             *ngIf="paginaAtiva === 'livros'"    />
+      <app-livro-form             *ngIf="paginaAtiva === 'livro-form'" (cancelado)="navegarPara('livros')"/>
       <app-emprestimos-atrasados  *ngIf="paginaAtiva === 'atrasados'" />
+      <app-emprestimo-list        *ngIf="paginaAtiva === 'emprestimos'" />
     </div>
   </main>
 

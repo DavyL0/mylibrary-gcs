@@ -20,7 +20,10 @@
   </div>
 
   <div class="section-card">
-    <h2 class="section-title">Últimos 5 empréstimos</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="section-title mb-0">Últimos 5 empréstimos</h2>
+      <span class="badge info" style="font-size: 10px;">HISTÓRICO RECENTE</span>
+    </div>
 
     <p class="empty" *ngIf="ultimosEmprestimos.length === 0">Nenhum empréstimo registrado.</p>
 
