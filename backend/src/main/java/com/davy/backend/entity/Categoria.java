@@ -1,7 +1,9 @@
 package com.davy.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.List;
 
@@ -12,20 +14,24 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String nome;
 
     @Column(length = 100, nullable = false)
     private String descricao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Livro> livros;
 
-    public Categoria(Long id, String nome, String descricao, List<Livro> livros) {
+    @JsonCreator
+    public Categoria(
+            @JsonProperty("id") Long id,
+            @JsonProperty("nome") String nome,
+            @JsonProperty("descricao") String descricao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.livros = livros;
     }
 
     public Categoria() {
