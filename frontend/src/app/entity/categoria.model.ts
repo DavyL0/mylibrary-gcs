@@ -1,6 +1,6 @@
 export interface Categoria {
   id?: number;
   nome: string;
-  descricao: string;
-  Livro: string;
+  descricao?: string;
+  livros?: any[];
 }
