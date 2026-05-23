@@ -1,16 +1,50 @@
-<div class="form-container">
-  <h3>Registrar Novo Empréstimo</h3>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+<div class="container mt-4" style="max-width: 640px;">
+  <div class="card shadow-sm">
+    <h2 class="mb-4 text-center" style="font-size: 1.25rem; font-weight: 600;">Registrar Novo Empréstimo</h2>
 
-    <input type="number" formControlName="livroId" placeholder="ID do Livro" />
+    <div *ngIf="mensagemSucesso" class="badge success mb-3 w-100" style="padding: 10px; font-size: 13px;">{{ mensagemSucesso }}</div>
+    <div *ngIf="erroServidor" class="badge danger mb-3 w-100" style="padding: 10px; font-size: 13px;">{{ erroServidor }}</div>
 
-    <input formControlName="nomeEmprestimo" placeholder="Nome do Leitor" />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <input formControlName="telefone" placeholder="Telefone de Contato" />
+      <div class="form-group">
+        <label class="form-label">Livro para Empréstimo</label>
+        <select formControlName="livroId" class="form-control" [ngClass]="{'is-invalid': form.get('livroId')?.touched && form.get('livroId')?.invalid}">
+          <option value="" disabled selected>Selecione um livro disponível</option>
+          <option *ngFor="let livro of livrosDisponiveis" [value]="livro.id">
+            {{ livro.titulo }} - {{ livro.autor }}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="form.get('livroId')?.hasError('required')">Selecione um livro.</div>
+      </div>
 
-    <label for="dataPrevista">Data de Devolução Prevista:</label>
-    <input id="dataPrevista" type="date" formControlName="dataDevolucaoPrevista" />
+      <div class="form-group">
+        <label class="form-label">Nome do Leitor</label>
+        <input type="text" formControlName="nomeEmprestimo" class="form-control" placeholder="Ex: João Silva" [ngClass]="{'is-invalid': form.get('nomeEmprestimo')?.touched && form.get('nomeEmprestimo')?.invalid}">
+        <div class="invalid-feedback" *ngIf="form.get('nomeEmprestimo')?.hasError('required')">O nome do leitor é obrigatório.</div>
+      </div>
 
-    <button type="submit" [disabled]="form.invalid">Confirmar Empréstimo</button>
-  </form>
+      <div class="row" style="display: flex; gap: 1rem;">
+        <div class="form-group" style="flex: 1;">
+          <label class="form-label">Telefone</label>
+          <input type="text" formControlName="telefone" class="form-control" placeholder="Apenas números (12-13 dígitos)" [ngClass]="{'is-invalid': form.get('telefone')?.touched && form.get('telefone')?.invalid}">
+          <div class="invalid-feedback" *ngIf="form.get('telefone')?.hasError('required')">O telefone é obrigatório.</div>
+          <div class="invalid-feedback" *ngIf="form.get('telefone')?.hasError('minlength')">O telefone deve ter no mínimo 12 caracteres.</div>
+          <div class="invalid-feedback" *ngIf="form.get('telefone')?.hasError('maxlength')">O telefone deve ter no máximo 13 caracteres.</div>
+          <div class="invalid-feedback" *ngIf="form.get('telefone')?.hasError('pattern')">O telefone deve conter apenas números.</div>
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label class="form-label">Data Prevista de Devolução</label>
+          <input type="date" formControlName="dataDevolucaoPrevista" class="form-control" [ngClass]="{'is-invalid': form.get('dataDevolucaoPrevista')?.touched && form.get('dataDevolucaoPrevista')?.invalid}">
+          <div class="invalid-feedback" *ngIf="form.get('dataDevolucaoPrevista')?.hasError('required')">A data de devolução é obrigatória.</div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="button" class="btn btn-ghost" (click)="cancelado.emit()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Confirmar Empréstimo</button>
+      </div>
+
+    </form>
+  </div>
 </div>

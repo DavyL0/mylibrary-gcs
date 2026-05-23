@@ -4,6 +4,7 @@ import { EmprestimoService } from '../../service/emprestimo.service';
 import { Emprestimo } from '../../entity/emprestimo.model';
 @Component({
   selector: 'app-emprestimos-atrasados',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './emprestimos-atrasados.html',
   styleUrl: './emprestimos-atrasados.css',
