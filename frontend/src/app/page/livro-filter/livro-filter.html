@@ -1,0 +1,65 @@
+<div class="filter-bar">
+  <form [formGroup]="filterForm">
+    <div class="filter-row">
+
+      <div class="field">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="">Todas</option>
+          <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="status">Status</label>
+        <select id="status" formControlName="status">
+          <option value="">Todos</option>
+          <option [value]="StatusLivro.DISPONIVEL">Disponível</option>
+          <option [value]="StatusLivro.EMPRESTADO">Emprestado</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="busca">Buscar por título ou autor</label>
+        <input id="busca" type="text" formControlName="busca" placeholder="ex: Asimov, Duna..." />
+      </div>
+
+    </div>
+  </form>
+
+  <div class="tags-row" *ngIf="filtrosAtivos.length > 0">
+    <span class="tag" *ngFor="let f of filtrosAtivos">
+      {{ f.label }}
+      <button (click)="removerFiltro(f.campo)" aria-label="remover filtro">×</button>
+    </span>
+    <button class="clear-btn" (click)="limparFiltros()">Limpar tudo</button>
+  </div>
+</div>
+
+<p class="results-count">{{ livrosFiltrados.length }} livro(s) encontrado(s)</p>
+
+<div class="livros-grid" *ngIf="livrosFiltrados.length > 0; else semResultados">
+  <div class="livro-card" *ngFor="let livro of livrosFiltrados">
+    <div class="livro-header">
+      <h3>{{ livro.titulo }}</h3>
+      <span class="badge"
+            [class.disponivel]="livro.status === StatusLivro.DISPONIVEL"
+            [class.emprestado]="livro.status === StatusLivro.EMPRESTADO">
+        {{ livro.status === StatusLivro.DISPONIVEL ? 'Disponível' : 'Emprestado' }}
+      </span>
+    </div>
+    <p class="autor"><i class="ti ti-user-edit"></i> {{ livro.autor }}</p>
+    <div class="livro-footer">
+      <span class="categoria-tag">
+        <i class="ti ti-tag"></i> {{ livro.categoria?.nome || 'Sem categoria' }}
+      </span>
+      <span class="ano" *ngIf="livro.anoPublicacao">
+        <i class="ti ti-calendar-event"></i> {{ livro.anoPublicacao }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<ng-template #semResultados>
+  <p class="empty-state">Nenhum livro encontrado com os filtros aplicados.</p>
+</ng-template>

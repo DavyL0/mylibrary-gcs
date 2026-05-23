@@ -1,9 +1,17 @@
+import { Categoria } from './categoria.model';
+
 export interface Livro {
   id?: number;
   titulo: string;
   autor: string;
   isbn: string;
-  ano: number;
-  categoria: string;
-  status: 'DISPONIVEL' | 'EMPRESTADO'; // CA02.1 & CA02.2
+  anoPublicacao: number;
+  categoria: Categoria;
+  status: 'DISPONIVEL' | 'EMPRESTADO';
+  emprestimos?: any[]; // Adicionado conforme o exemplo de retorno
+}
+
+export enum StatusLivro {
+  DISPONIVEL = 'DISPONIVEL',
+  EMPRESTADO = 'EMPRESTADO'
 }

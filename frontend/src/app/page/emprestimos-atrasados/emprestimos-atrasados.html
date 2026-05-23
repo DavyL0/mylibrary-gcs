@@ -1,0 +1,63 @@
+<div class="card" *ngIf="!carregando; else loading">
+
+  <div class="header">
+    <div class="header-left">
+      <h2 class="header-title">Empréstimos em atraso</h2>
+      <span class="alert-count" *ngIf="atrasados.length > 0">
+        <i class="ti ti-alert-triangle" aria-hidden="true"></i>
+        {{ atrasados.length }} em atraso
+      </span>
+    </div>
+    <span class="total-info">hoje: {{ hoje | date:'dd/MM/yyyy' }}</span>
+  </div>
+
+  <p class="empty" *ngIf="atrasados.length === 0">
+    Nenhum empréstimo em atraso. 🎉
+  </p>
+
+  <table *ngIf="atrasados.length > 0">
+    <thead>
+    <tr>
+      <th>Livro</th>
+      <th>Pessoa</th>
+      <th>Data prevista</th>
+      <th>Atraso</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of atrasados">
+
+      <!-- CA06.3: livro -->
+      <td>
+        <div class="livro-titulo">{{ emp.livro.titulo }}</div>
+        <div class="livro-autor">{{ emp.livro.autor }}</div>
+      </td>
+
+      <!-- CA06.3: pessoa -->
+      <td>
+        <div class="pessoa-nome">{{ emp.nomeEmprestimo }}</div>
+        <div class="pessoa-tel">{{ emp.telefone }}</div>
+      </td>
+
+      <!-- CA06.3: data prevista -->
+      <td class="data-prevista">
+        {{ emp.dataDevolucaoPrevista | date:'dd/MM/yyyy' }}
+      </td>
+
+      <!-- CA06.3: dias de atraso -->
+      <td>
+          <span class="dias-badge" [ngClass]="badgeClass(emp)">
+            <i class="ti ti-clock" aria-hidden="true"></i>
+            {{ diasAtraso(emp) }} {{ diasAtraso(emp) === 1 ? 'dia' : 'dias' }}
+          </span>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template #loading>
+  <p class="loading-text">Carregando empréstimos...</p>
+</ng-template>

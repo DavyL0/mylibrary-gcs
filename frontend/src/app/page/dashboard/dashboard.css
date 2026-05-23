@@ -1,0 +1,68 @@
+.dashboard { display: flex; flex-direction: column; gap: 1.5rem; padding: 1.5rem 0; }
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--color-border-tertiary);
+  transition: transform 0.2s;
+
+  &:hover { transform: translateY(-2px); }
+
+  .metric-label { font-size: 12px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.02em; }
+  .metric-value { font-size: 28px; font-weight: 600; color: var(--color-text-primary); }
+
+  &.disponivel {
+    border-color: var(--color-border-success);
+    .metric-value { color: var(--color-text-success); }
+  }
+  &.emprestado {
+    border-color: var(--color-border-danger);
+    .metric-value { color: var(--color-text-danger); }
+  }
+  &.ativo {
+    border-color: var(--color-border-info);
+    .metric-value { color: var(--color-text-info); }
+  }
+}
+
+.section-card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+}
+
+.section-title { font-size: 14px; font-weight: 500; margin-bottom: 1rem; }
+
+.emprestimo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  &:last-child { border-bottom: none; padding-bottom: 0; }
+}
+
+.emp-titulo  { font-size: 14px; font-weight: 500; }
+.emp-meta    { font-size: 12px; color: var(--color-text-secondary); }
+
+.badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--border-radius-md);
+  &.ativo   { background: var(--color-background-success); color: var(--color-text-success); }
+  &.vencido { background: var(--color-background-danger); color: var(--color-text-danger); }
+}
+
+.loading-text { color: var(--color-text-secondary); font-size: 14px; }
+.empty        { font-size: 13px; color: var(--color-text-secondary); }

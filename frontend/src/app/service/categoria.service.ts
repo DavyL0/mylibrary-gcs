@@ -7,7 +7,7 @@ import { Categoria } from '../entity/categoria.model';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private apiUrl = 'http://localhost:8080/api/receitas';
+  private apiUrl = 'http://localhost:8080/api/categorias';
 
   constructor(private http: HttpClient) {}
   listarTodas(): Observable<Categoria[]> {

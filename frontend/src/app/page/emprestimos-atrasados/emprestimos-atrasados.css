@@ -1,0 +1,86 @@
+.card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.header-left    { display: flex; align-items: center; gap: 12px; }
+.header-title   { font-size: 18px; font-weight: 600; color: var(--color-text-primary); }
+.total-info     { font-size: 13px; color: var(--color-text-tertiary); }
+
+.alert-count {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: var(--color-background-danger);
+  color: var(--color-text-danger);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  i { font-size: 14px; }
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+thead th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  padding: 12px;
+  border-bottom: 2px solid var(--color-background-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr {
+  transition: background 0.15s;
+  &:hover { background: var(--color-background-secondary); }
+}
+
+td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--color-border-tertiary);
+  vertical-align: middle;
+}
+
+.livro-titulo   { font-weight: 600; font-size: 15px; color: var(--color-text-primary); }
+.livro-autor    { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+.pessoa-nome    { font-size: 15px; color: var(--color-text-primary); }
+.pessoa-tel     { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+.data-prevista  { font-weight: 500; color: var(--color-text-secondary); }
+
+.dias-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+
+  i { font-size: 12px; }
+
+  &.alto   { background: var(--color-background-danger); color: var(--color-text-danger); border: 1px solid var(--color-border-danger); }
+  &.medio  { background: var(--color-background-warning); color: var(--color-text-warning); border: 1px solid var(--color-border-warning); }
+  &.baixo  { background: var(--color-background-info); color: var(--color-text-info); border: 1px solid var(--color-border-info); }
+}
+
+.empty        { text-align: center; padding: 3rem; color: var(--color-text-secondary); font-size: 14px; }
+.loading-text { color: var(--color-text-secondary); font-size: 14px; }
