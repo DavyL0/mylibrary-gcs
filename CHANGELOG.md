@@ -1,13 +1,10 @@
 # Changelog
-## [1.0.0] - 2026-05-20
+## [1.0.1] - 2026-05-23
 
 ### Added
-- RF01: CRUD Categorias com validação de exclusão (#1)
-- RF02: CRUD Livros com filtros e status (#2)
-- RF03: Sistema de empréstimos (emprestar/devolver) (#3)
-- Pipeline CI: build backend (Maven) e frontend (Angular)
-- Status automático: DISPONIVEL ↔ EMPRESTADO
-### Technical
-- 3 Entidades: Categoria, Livro, Emprestimo
-- Service Layer com lógica emprestar/devolver
-- Branch protection configurado no main
+- feature: implementar RF03 - emprestimos by @DavyL0 in #9
+- Merge pull request #9 from DavyL0/feature/emprestimos by @DavyL0 in #10
+- feature (frontend): correção livro-forms by @DavyL0 in #13
+- Feature/dashboard by @DavyL0 in #14
+- Hotfix/validacao exclusao by @DavyL0 in #18
+  
