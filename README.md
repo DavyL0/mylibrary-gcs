@@ -1,4 +1,4 @@
-# 📚 Sistema de Gerenciamento de Biblioteca Pessoal (v1.1)
+# Sistema de Gerenciamento de Biblioteca Pessoal (v1.0.1)
 
 Este é um sistema completo para catalogar livros pessoais, organizar categorias, registrar empréstimos para amigos ou familiares e monitorar devoluções de forma automatizada. 
 
@@ -6,7 +6,7 @@ O projeto foi desenvolvido para demonstrar o uso prático de relacionamentos com
 
 ---
 
-## 🚀 Funcionalidades Principais
+## Funcionalidades Principais
 
 * **Catálogo de Livros:** Cadastro, edição, visualização e exclusão de livros.
 * **Organização por Categorias:** Vinculação de livros a categorias específicas (Ficção, Técnico, Biografia, etc.).
@@ -16,7 +16,7 @@ O projeto foi desenvolvido para demonstrar o uso prático de relacionamentos com
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Backend
 * **Java 26** (Usufruindo dos recursos mais recentes da linguagem)
@@ -33,7 +33,7 @@ O projeto foi desenvolvido para demonstrar o uso prático de relacionamentos com
 
 ---
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina:
 * [JDK 26](https://jdk.java.net/)
@@ -42,11 +42,6 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 * IntelliJ IDEA
 
 ---
+## Aviso
 
-## 🔧 Configuração e Execução
-
-### 1. Backend (Spring Boot)
-
-1. Navegue até o diretório do backend:
-   ```bash
-   cd backend
+Para atualizar os componentes deve clicar duas vezes nele para atualizar 
