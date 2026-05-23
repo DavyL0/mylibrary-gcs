@@ -1,3 +1,5 @@
+import { Livro } from './livro.model';
+
 export interface EmprestimoRequest {
   livroId: number;
   nomeEmprestimo: string;
@@ -7,8 +9,7 @@ export interface EmprestimoRequest {
 
 export interface Emprestimo {
   id: number;
-  livro?: any;
-  livroId?: number;
+  livro?: Livro;
   nomeEmprestimo: string;
   telefone: string;
   dataEmprestimo: string;
